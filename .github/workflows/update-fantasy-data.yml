@@ -1,0 +1,61 @@
+name: Update Fantasy Football Data
+
+on:
+  # Run every Wednesday at 8 AM UTC (adjust timezone as needed)
+  schedule:
+    - cron: '0 8 * * 3'
+
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+  # Run on push to main for testing
+  push:
+    branches:
+      - main
+      - claude/*
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Fetch fantasy football data
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_ID: '598983'
+        run: |
+          python fetch_fantasy_data.py
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code fantasy-data.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add fantasy-data.json
+          git commit -m "Update fantasy football data - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push

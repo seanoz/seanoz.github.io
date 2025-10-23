@@ -1,0 +1,678 @@
+{
+  "last_updated": "2025-10-23T03:30:11.867620",
+  "league_info": {
+    "league_id": "598983",
+    "seasons_tracked": 5,
+    "total_teams": 10,
+    "total_games": 650,
+    "season_range": "2019-2024"
+  },
+  "all_time_standings": [
+    {
+      "team_name": "Team Alpha",
+      "wins": 52,
+      "losses": 28,
+      "ties": 0,
+      "points_for": 9245.5,
+      "points_against": 8532.25,
+      "championships": 2
+    },
+    {
+      "team_name": "Team Bravo",
+      "wins": 48,
+      "losses": 32,
+      "ties": 0,
+      "points_for": 8976.75,
+      "points_against": 8654.5,
+      "championships": 1
+    },
+    {
+      "team_name": "Team Charlie",
+      "wins": 45,
+      "losses": 35,
+      "ties": 0,
+      "points_for": 8845.25,
+      "points_against": 8721.0,
+      "championships": 0
+    },
+    {
+      "team_name": "Team Delta",
+      "wins": 42,
+      "losses": 38,
+      "ties": 0,
+      "points_for": 8654.0,
+      "points_against": 8789.5,
+      "championships": 1
+    },
+    {
+      "team_name": "Team Echo",
+      "wins": 40,
+      "losses": 40,
+      "ties": 0,
+      "points_for": 8543.75,
+      "points_against": 8654.25,
+      "championships": 0
+    },
+    {
+      "team_name": "Team Foxtrot",
+      "wins": 38,
+      "losses": 42,
+      "ties": 0,
+      "points_for": 8432.5,
+      "points_against": 8712.75,
+      "championships": 1
+    },
+    {
+      "team_name": "Team Golf",
+      "wins": 35,
+      "losses": 45,
+      "ties": 0,
+      "points_for": 8321.25,
+      "points_against": 8845.5,
+      "championships": 0
+    },
+    {
+      "team_name": "Team Hotel",
+      "wins": 32,
+      "losses": 48,
+      "ties": 0,
+      "points_for": 8210.0,
+      "points_against": 8976.25,
+      "championships": 0
+    },
+    {
+      "team_name": "Team India",
+      "wins": 28,
+      "losses": 52,
+      "ties": 0,
+      "points_for": 8098.75,
+      "points_against": 9087.0,
+      "championships": 0
+    },
+    {
+      "team_name": "Team Juliet",
+      "wins": 25,
+      "losses": 55,
+      "ties": 0,
+      "points_for": 7987.5,
+      "points_against": 9198.75,
+      "championships": 0
+    }
+  ],
+  "team_records": {
+    "season": {
+      "highest_score": {
+        "value": 187.5,
+        "team": "Team Alpha",
+        "season": "2023"
+      },
+      "lowest_score": {
+        "value": 42.3,
+        "team": "Team Juliet",
+        "season": "2021"
+      },
+      "biggest_margin_win": {
+        "value": 89.2,
+        "team": "Team Bravo",
+        "season": "2022"
+      },
+      "longest_win_streak": {
+        "value": 9,
+        "team": "Team Alpha",
+        "season": "2024"
+      }
+    },
+    "career": {
+      "most_championships": {
+        "value": 2,
+        "team": "Team Alpha"
+      },
+      "most_playoff_appearances": {
+        "value": 5,
+        "team": "Team Alpha"
+      },
+      "highest_win_percentage": {
+        "value": 65.0,
+        "team": "Team Alpha"
+      },
+      "most_points_for": {
+        "value": 9245.5,
+        "team": "Team Alpha"
+      }
+    }
+  },
+  "single_game_records": {
+    "top_score": {
+      "team": "Team Alpha",
+      "score": 187.5,
+      "week": "Week 8",
+      "season": "2023"
+    },
+    "lowest_score": {
+      "team": "Team Juliet",
+      "score": 42.3,
+      "week": "Week 12",
+      "season": "2021"
+    },
+    "largest_victory_margin": {
+      "team": "Team Bravo",
+      "score": 89.2,
+      "week": "Week 5",
+      "season": "2022"
+    },
+    "smallest_victory_margin": {
+      "team": "Team Echo",
+      "score": 0.5,
+      "week": "Week 3",
+      "season": "2020"
+    },
+    "most_combined_points": {
+      "teams": "Alpha vs Bravo",
+      "score": 325.8,
+      "week": "Week 10",
+      "season": "2023"
+    },
+    "fewest_combined_points": {
+      "teams": "Juliet vs India",
+      "score": 125.4,
+      "week": "Week 14",
+      "season": "2021"
+    },
+    "highest_score_in_loss": {
+      "team": "Team Charlie",
+      "score": 165.3,
+      "week": "Week 6",
+      "season": "2023"
+    },
+    "lowest_score_in_win": {
+      "team": "Team Delta",
+      "score": 78.9,
+      "week": "Week 11",
+      "season": "2020"
+    }
+  },
+  "head_to_head_matrix": [
+    {
+      "team": "Team Alpha",
+      "opponents": [
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        },
+        {
+          "wins": 8,
+          "losses": 0
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        },
+        {
+          "wins": 8,
+          "losses": 0
+        },
+        {
+          "wins": 8,
+          "losses": 0
+        }
+      ]
+    },
+    {
+      "team": "Team Bravo",
+      "opponents": [
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        }
+      ]
+    },
+    {
+      "team": "Team Charlie",
+      "opponents": [
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        }
+      ]
+    },
+    {
+      "team": "Team Delta",
+      "opponents": [
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        }
+      ]
+    },
+    {
+      "team": "Team Echo",
+      "opponents": [
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        }
+      ]
+    },
+    {
+      "team": "Team Foxtrot",
+      "opponents": [
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 8,
+          "losses": 0
+        },
+        {
+          "wins": 8,
+          "losses": 0
+        }
+      ]
+    },
+    {
+      "team": "Team Golf",
+      "opponents": [
+        {
+          "wins": 0,
+          "losses": 8
+        },
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        },
+        {
+          "wins": 7,
+          "losses": 1
+        }
+      ]
+    },
+    {
+      "team": "Team Hotel",
+      "opponents": [
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        },
+        {
+          "wins": 6,
+          "losses": 2
+        }
+      ]
+    },
+    {
+      "team": "Team India",
+      "opponents": [
+        {
+          "wins": 0,
+          "losses": 8
+        },
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 0,
+          "losses": 8
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        },
+        {
+          "wins": 5,
+          "losses": 3
+        }
+      ]
+    },
+    {
+      "team": "Team Juliet",
+      "opponents": [
+        {
+          "wins": 0,
+          "losses": 8
+        },
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 0,
+          "losses": 8
+        },
+        {
+          "wins": 1,
+          "losses": 7
+        },
+        {
+          "wins": 2,
+          "losses": 6
+        },
+        {
+          "wins": 3,
+          "losses": 5
+        },
+        {
+          "wins": 0,
+          "losses": 0
+        }
+      ]
+    }
+  ],
+  "championship_history": [
+    {
+      "season": "2024",
+      "champion": "Team Alpha",
+      "runner_up": "Team Bravo",
+      "score": "145.3 - 132.7"
+    },
+    {
+      "season": "2023",
+      "champion": "Team Alpha",
+      "runner_up": "Team Delta",
+      "score": "156.8 - 142.1"
+    },
+    {
+      "season": "2022",
+      "champion": "Team Foxtrot",
+      "runner_up": "Team Bravo",
+      "score": "138.5 - 135.2"
+    },
+    {
+      "season": "2021",
+      "champion": "Team Delta",
+      "runner_up": "Team Charlie",
+      "score": "149.7 - 141.3"
+    },
+    {
+      "season": "2020",
+      "champion": "Team Bravo",
+      "runner_up": "Team Echo",
+      "score": "152.4 - 128.9"
+    }
+  ]
+}

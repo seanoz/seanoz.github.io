@@ -1,0 +1,517 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Fantasy Football Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0078D4;
+            --dark-blue: #004578;
+            --light-blue: #50A0DC;
+            --accent-blue: #00BCF2;
+            --background: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --border: #E0E0E0;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 3px solid var(--accent-blue);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--dark-blue);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: #F8F9FA;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.1em;
+        }
+
+        .champion {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .matrix {
+            overflow-x: auto;
+        }
+
+        .matrix table {
+            font-size: 0.9em;
+        }
+
+        .matrix th, .matrix td {
+            text-align: center;
+            padding: 8px;
+            min-width: 60px;
+        }
+
+        .matrix .team-name {
+            font-weight: 600;
+            text-align: left;
+            background: var(--light-blue);
+            color: white;
+        }
+
+        .win-cell {
+            background: rgba(40, 167, 69, 0.2);
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .loss-cell {
+            background: rgba(220, 53, 69, 0.2);
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: white;
+            font-size: 1.5em;
+        }
+
+        .error {
+            background: var(--danger);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .rank {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .rank-1 { background: #FFD700; color: #1A1A1A; }
+        .rank-2 { background: #C0C0C0; color: #1A1A1A; }
+        .rank-3 { background: #CD7F32; color: white; }
+        .rank-other { background: var(--border); color: var(--text-dark); }
+
+        .trophy {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fantasy Football Dashboard</h1>
+            <div class="subtitle">League ID: 598983</div>
+        </header>
+
+        <div class="last-updated" id="lastUpdated">Loading...</div>
+
+        <div id="content" class="loading">Loading league data...</div>
+    </div>
+
+    <script>
+        // Load data from generated JSON file
+        async function loadData() {
+            try {
+                const response = await fetch('fantasy-data.json');
+                if (!response.ok) throw new Error('Data not found');
+                const data = await response.json();
+                displayData(data);
+            } catch (error) {
+                document.getElementById('content').innerHTML = `
+                    <div class="error">
+                        <h2>Unable to load data</h2>
+                        <p>The fantasy football data hasn't been generated yet. Please wait for the first data update.</p>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayData(data) {
+            const lastUpdated = new Date(data.last_updated).toLocaleString();
+            document.getElementById('lastUpdated').textContent = `Last Updated: ${lastUpdated}`;
+
+            let html = '<div class="stats-grid">';
+
+            // League Overview
+            html += `
+                <div class="card">
+                    <h2>League Overview</h2>
+                    <div class="stat-row">
+                        <span class="stat-label">Seasons Tracked</span>
+                        <span class="stat-value">${data.league_info.seasons_tracked || 0}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Teams</span>
+                        <span class="stat-value">${data.league_info.total_teams || 0}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Games Played</span>
+                        <span class="stat-value">${data.league_info.total_games || 0}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Season Range</span>
+                        <span class="stat-value">${data.league_info.season_range || 'N/A'}</span>
+                    </div>
+                </div>
+            `;
+
+            // All-Time Standings
+            html += `
+                <div class="card full-width">
+                    <h2>All-Time Standings</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Team</th>
+                                <th>Wins</th>
+                                <th>Losses</th>
+                                <th>Ties</th>
+                                <th>Win %</th>
+                                <th>Points For</th>
+                                <th>Points Against</th>
+                                <th>Championships</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${generateStandingsRows(data.all_time_standings)}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            // Team Records
+            html += `
+                <div class="card full-width">
+                    <h2>Team Records</h2>
+                    <div class="stats-grid">
+                        <div>
+                            <h3>Season Records</h3>
+                            ${generateRecordsList(data.team_records.season)}
+                        </div>
+                        <div>
+                            <h3>Career Records</h3>
+                            ${generateRecordsList(data.team_records.career)}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Single Game Records
+            html += `
+                <div class="card full-width">
+                    <h2>Single Game Records</h2>
+                    <div class="stats-grid">
+                        ${generateSingleGameRecords(data.single_game_records)}
+                    </div>
+                </div>
+            `;
+
+            // Head-to-Head Matrix
+            html += `
+                <div class="card full-width">
+                    <h2>Head-to-Head Records</h2>
+                    <div class="matrix">
+                        ${generateHeadToHeadMatrix(data.head_to_head_matrix)}
+                    </div>
+                </div>
+            `;
+
+            // Championship History
+            if (data.championship_history && data.championship_history.length > 0) {
+                html += `
+                    <div class="card full-width">
+                        <h2>Championship History</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Season</th>
+                                    <th>Champion</th>
+                                    <th>Runner-Up</th>
+                                    <th>Final Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.championship_history.map(champ => `
+                                    <tr>
+                                        <td>${champ.season}</td>
+                                        <td class="champion"><span class="trophy">🏆</span>${champ.champion}</td>
+                                        <td>${champ.runner_up}</td>
+                                        <td>${champ.score || 'N/A'}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+            document.getElementById('content').innerHTML = html;
+        }
+
+        function generateStandingsRows(standings) {
+            if (!standings || standings.length === 0) {
+                return '<tr><td colspan="9">No data available</td></tr>';
+            }
+
+            return standings.map((team, index) => {
+                const rank = index + 1;
+                const rankClass = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : rank === 3 ? 'rank-3' : 'rank-other';
+                const winPct = ((team.wins / (team.wins + team.losses + team.ties)) * 100).toFixed(1);
+
+                return `
+                    <tr>
+                        <td><span class="rank ${rankClass}">${rank}</span></td>
+                        <td><strong>${team.team_name}</strong></td>
+                        <td>${team.wins}</td>
+                        <td>${team.losses}</td>
+                        <td>${team.ties || 0}</td>
+                        <td>${winPct}%</td>
+                        <td>${team.points_for.toFixed(2)}</td>
+                        <td>${team.points_against.toFixed(2)}</td>
+                        <td>${team.championships || 0}${team.championships > 0 ? ' 🏆' : ''}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function generateRecordsList(records) {
+            if (!records || Object.keys(records).length === 0) {
+                return '<p>No records available</p>';
+            }
+
+            return Object.entries(records).map(([key, record]) => `
+                <div class="stat-row">
+                    <span class="stat-label">${formatRecordLabel(key)}</span>
+                    <span class="stat-value">${formatRecordValue(record)}</span>
+                </div>
+            `).join('');
+        }
+
+        function generateSingleGameRecords(records) {
+            if (!records || Object.keys(records).length === 0) {
+                return '<div>No records available</div>';
+            }
+
+            return Object.entries(records).map(([key, record]) => `
+                <div class="card">
+                    <h3>${formatRecordLabel(key)}</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Team</span>
+                        <span class="stat-value">${record.team}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Score</span>
+                        <span class="stat-value">${record.score}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Week</span>
+                        <span class="stat-value">${record.week}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Season</span>
+                        <span class="stat-value">${record.season}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateHeadToHeadMatrix(matrix) {
+            if (!matrix || matrix.length === 0) {
+                return '<p>No head-to-head data available</p>';
+            }
+
+            const teams = matrix.map(row => row.team);
+            let html = '<table><thead><tr><th>Team</th>';
+
+            teams.forEach(team => {
+                html += `<th>${truncateTeamName(team)}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            matrix.forEach(row => {
+                html += `<tr><td class="team-name">${row.team}</td>`;
+                row.opponents.forEach(opp => {
+                    if (opp.wins === 0 && opp.losses === 0) {
+                        html += `<td>-</td>`;
+                    } else {
+                        const cellClass = opp.wins > opp.losses ? 'win-cell' : opp.losses > opp.wins ? 'loss-cell' : '';
+                        html += `<td class="${cellClass}">${opp.wins}-${opp.losses}</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            return html;
+        }
+
+        function formatRecordLabel(key) {
+            return key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+
+        function formatRecordValue(record) {
+            if (typeof record === 'object') {
+                return `${record.value} (${record.team}${record.season ? ', ' + record.season : ''})`;
+            }
+            return record;
+        }
+
+        function truncateTeamName(name) {
+            return name.length > 12 ? name.substring(0, 10) + '...' : name;
+        }
+
+        // Load data on page load
+        loadData();
+
+        // Refresh data every 5 minutes
+        setInterval(loadData, 5 * 60 * 1000);
+    </script>
+</body>
+</html>
